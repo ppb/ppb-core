@@ -7,14 +7,14 @@ build-backend = "setuptools.build_meta"
 
 [project]
 dynamic = ["version"]
-name = "ppb"
+name = "ppb-core"
 authors = [
     {name = "Piper Thunstrom", email="pathunstrom@gmail.com"}
 ]
 maintainers = [
     {name = "Piper Thunstrom", email="pathunstrom@gmail.com"}
 ]
-description = "An Event Driven Python Game Engine"
+description = "Core components of the ppb game engine."
 readme = "README.md"
 license = { "file" = "LICENSE.txt" }
 classifiers =[
@@ -24,7 +24,6 @@ classifiers =[
     "License :: OSI Approved :: Artistic License",
     "Natural Language :: English",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
@@ -33,10 +32,8 @@ classifiers =[
     "Topic :: Software Development :: Libraries",
     "Operating System :: OS Independent"
 ]
-requires-python = "> 3.8"
+requires-python = "> 3.9"
 dependencies = [
-    "PySDL2",
-    "pysdl2-dll",
     "ppb-vector ~= 1.0",
     "Deprecated ~= 1.2.12"
 ]

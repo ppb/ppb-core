@@ -16,13 +16,10 @@ traditional Python inheritance.
 If you don't need the built in features of :class:`~ppb.Sprite` see
 :class:`BaseSprite`.
 """
-from inspect import getfile
-from pathlib import Path
 from typing import Union
 
 from ppb_vector import Vector, VectorLike
 
-import ppb
 import ppb.gomlib
 
 __all__ = (
@@ -32,7 +29,6 @@ __all__ = (
     "SquareShapeMixin",
     "RectangleShapeMixin",
     "RectangleSprite",
-    "RenderableMixin",
 )
 
 
@@ -84,47 +80,6 @@ class BaseSprite(ppb.gomlib.GameObject):
 
         # Type coercion
         self.position = Vector(self.position)
-
-
-class RenderableMixin:
-    """
-    A class implementing the API expected by ppb.systems.renderer.Renderer.
-
-    The render expects a width and height (see :class:`RectangleMixin`) and will
-    skip rendering if a sprite has no shape. You can use
-    :class:`RectangleMixin`, :class:`SquareMixin`, or set the values yourself.
-
-    Additionally, if :attr:`~RenderableMixin.image` is ``None``, the sprite will not
-    be rendered. If you just want a basic shape to be rendered, see
-    :mod:`ppb.assets`.
-    """
-    #: (:py:class:`ppb.Image`): The image asset
-    image = ...  # TODO: Type hint appropriately
-    size = 1
-    blend_mode: 'ppb.flags.BlendMode' # One of four blending modes
-    opacity: int # An opacity value from 0-255
-    color: 'ppb.utils.Color' # A 3-tuple color with values 0-255
-
-    def __image__(self):
-        """
-        Returns the sprite's image attribute if provided, or sets a default
-        one.
-        """
-        if self.image is ...:
-            klass = type(self)
-            prefix = Path(klass.__module__.replace('.', '/'))
-            try:
-                klassfile = getfile(klass)
-            except TypeError:
-                prefix = Path('.')
-            else:
-                if Path(klassfile).name != '__init__.py':
-                    prefix = prefix.parent
-            if prefix == Path('.'):
-                self.image = ppb.Image(f"{klass.__name__.lower()}.png")
-            else:
-                self.image = ppb.Image(f"{prefix!s}/{klass.__name__.lower()}.png")
-        return self.image
 
 
 class RotatableMixin:
@@ -416,7 +371,7 @@ class SquareShapeMixin(RectangleShapeMixin):
         self.size = value
 
 
-class Sprite(SquareShapeMixin, RenderableMixin, RotatableMixin, BaseSprite):
+class Sprite(SquareShapeMixin, RotatableMixin, BaseSprite):
     """
     The default Sprite class.
 
@@ -433,7 +388,7 @@ class Sprite(SquareShapeMixin, RenderableMixin, RotatableMixin, BaseSprite):
     """
 
 
-class RectangleSprite(RectangleShapeMixin, RenderableMixin, RotatableMixin, BaseSprite):
+class RectangleSprite(RectangleShapeMixin, RotatableMixin, BaseSprite):
     """
     A rectangle sprite.
 

@@ -2,8 +2,6 @@
 This module performs time keeping of subsystems 
 """
 
-import time
-
 import ppb
 import ppb.events as events
 from ppb.systemslib import System
