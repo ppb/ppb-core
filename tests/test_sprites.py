@@ -525,6 +525,9 @@ def test_sides_top_right_plus_equals(x, y, vector_type, sprite_class):
     assert sprite.position == top_right + Vector(-0.5, -0.5)
 
 
+# Skipping in core until we figure out where this test needs to live and what it should look like.
+# It uses the Renderable mixin, which doesn't actually exist in ppb-core.
+@pytest.mark.skip
 def test_sprite_in_main():
     """
     Test that Sprite.__resource_path__ returns a meaningful value inside

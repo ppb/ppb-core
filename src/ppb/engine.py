@@ -29,9 +29,6 @@ from ppb.errors import BadChildException
 from ppb.errors import NotMyChildError
 from ppb.errors import BadEventHandlerException
 from ppb.scenes import Scene
-from ppb.systems import EventPoller
-from ppb.systems import Renderer
-from ppb.systems import SoundController
 from ppb.systems import Updater
 from ppb.utils import LoggingMixin
 from ppb.utils import camel_to_snake
@@ -237,7 +234,7 @@ class GameEngine(GameObject, LoggingMixin):
            ge.run()
     """
     def __init__(self, first_scene: Union[Type, Scene], *,
-                 basic_systems=(Renderer, Updater, EventPoller, SoundController, AssetLoadingSystem),
+                 basic_systems=(Updater, AssetLoadingSystem),
                  systems=(), scene_kwargs=None, **kwargs):
         """
         :param first_scene: A :class:`~ppb.Scene` type.
