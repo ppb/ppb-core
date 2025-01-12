@@ -28,11 +28,12 @@ classifiers =[
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Topic :: Games/Entertainment",
     "Topic :: Software Development :: Libraries",
     "Operating System :: OS Independent"
 ]
-requires-python = "> 3.9"
+requires-python = ">= 3.9"
 dependencies = [
     "ppb-vector ~= 1.0",
     "Deprecated ~= 1.2.12"
@@ -40,8 +41,8 @@ dependencies = [
 
 [project.urls]
 Homepage = "https://ppb.dev"
-Respository = "https://github.com/ppb/pursuedpybear"
-Issues = "https://github.com/ppb/pursuedpybear/issues"
+Respository = "https://github.com/ppb/ppb-core"
+Issues = "https://github.com/ppb/ppb-core/issues"
 
 [tool.setuptools_scm]
 local_scheme = "dirty-tag"
