@@ -10,10 +10,7 @@ from ppb.systemslib import System
 class Updater(System):
 
     def __init__(self, time_step=0.016, **kwargs):
-        self.accumulated_time = 0
-        self.last_tick = None
-        self.start_time = None
-        self.time_step = time_step
+        super().__init__(accumulated_time=0, last_tick=None, start_time=None, time_step=time_step, **kwargs)
 
     def __enter__(self):
         self.start_time = ppb.get_time()
